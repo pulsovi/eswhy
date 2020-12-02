@@ -15,7 +15,7 @@ program
   .name('eswhy');
 
 program
-  .command('rule <rule> <file>')
+  .command('rule <rule> <file>', { isDefault: true })
   .description('print cascading value for provided rule')
   .action((rule, file) => printProp(`rules.${rule}`, file));
 
