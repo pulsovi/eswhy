@@ -1,0 +1,30 @@
+{
+  "name": "eswhy",
+  "bin": {
+    "eswhy": "bin/eswhy.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "pulsovi/node"
+    ],
+    "ignorePatterns": [
+      "node_modules/"
+    ]
+  },
+  "version": "1.0.0",
+  "description": "give debug infos on parsing eslint rules",
+  "main": "index.js",
+  "repository": "https://github.com/pulsovi/eswhy.git",
+  "author": "David GABISON <david.gabison@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@eslint/eslintrc": "^0.2.1",
+    "chalk": "^4.1.0",
+    "commander": "^6.2.0",
+    "dot-prop": "^6.0.1",
+    "underscore-pulsovi": "https://github.com/pulsovi/underscore-pulsovi"
+  },
+  "devDependencies": {
+    "eslint-config-pulsovi": "https://github.com/pulsovi/eslint-config-pulsovi.git"
+  }
+}
