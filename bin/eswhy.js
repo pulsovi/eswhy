@@ -16,12 +16,18 @@ program
 
 program
   .command('rule <rule> <file>', { isDefault: true })
-  .description('print cascading value for provided rule')
+  .description('(default) print cascading value for provided rule', {
+    file: '(required) get config for this file',
+    rule: '(required) the eslint rule to check',
+  })
   .action((rule, file) => printProp(`rules.${rule}`, file));
 
 program
   .command('prop <prop> <file>')
-  .description('print cascading value for provided prop')
+  .description('print cascading value for provided prop', {
+    file: '(required) get config for this file',
+    prop: '(required) the eslint prop to check',
+  })
   .action(printProp);
 
 program
