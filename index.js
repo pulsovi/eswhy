@@ -2,9 +2,11 @@ const path = require('path');
 
 const { Legacy: { CascadingConfigArrayFactory }} = require('@eslint/eslintrc');
 const { get } = require('dot-prop');
+const pkgDir = require('pkg-dir');
+const { isString } = require('underscore');
 
-function getCascadingProp(prop, file) {
-  const filename = path.resolve(file);
+async function getCascadingProp(prop, file) {
+  const filename = await resolveFile(file);
   const cascadingConfigArrayFactory = new CascadingConfigArrayFactory({
     eslintAllPath: require.resolve('eslint/conf/eslint-all.js'),
     eslintRecommendedPath: require.resolve('eslint/conf/eslint-recommended.js'),
@@ -16,7 +18,18 @@ function getCascadingProp(prop, file) {
   return cascadingProp.concat([['FINAL', get(finalConfig, prop)]]);
 }
 
+async function getMain() {
+  return require.resolve(await pkgDir());
+}
+
+function resolveFile(file) {
+  if (isString(file))
+    return path.resolve(file);
+  return getMain();
+}
+
 module.exports = {
   CascadingConfigArrayFactory,
   getCascadingProp,
+  resolveFile,
 };
